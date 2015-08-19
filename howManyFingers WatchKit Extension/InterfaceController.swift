@@ -12,6 +12,35 @@ import Foundation
 
 class InterfaceController: WKInterfaceController {
 
+    @IBOutlet var guess: WKInterfaceSlider!
+    
+    @IBOutlet var guessLabel: WKInterfaceLabel!
+    
+    @IBOutlet var resultLabel: WKInterfaceLabel!
+    
+     var guessNumber:Int = 3
+    
+    @IBAction func guessUpdated(value: Float) {
+        
+        guessNumber = Int(value * 5)
+            
+        guessLabel.setText("Your Guess: \(guessNumber)")
+        
+    }
+    
+    @IBAction func guessPressed() {
+    
+        var randomNumber = Int(arc4random_uniform(6))
+        
+        if randomNumber == guessNumber {
+            
+            resultLabel.setText("Correct!")
+        }
+        else{
+            resultLabel.setText("Wrong! Was \(randomNumber)")
+        }
+    }
+   
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
         
